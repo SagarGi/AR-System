@@ -1,0 +1,2 @@
+-to keep detailed information of the vehicle owner and their respective vehicle.
+-to digitalized the vehicle registration process.

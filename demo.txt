@@ -1,0 +1,48 @@
+       try
+		{
+			Connection conn;
+			Statement statement;
+			conn = DriverManager.getConnection("jdbc:mysql://localhost?useSSL=true","root", "");
+			statement = conn.createStatement();
+			statement.executeUpdate("CREATE DATABASE IF NOT EXISTS staffdetails;");
+			statement.executeUpdate("USE staffdetails");
+			statement.executeUpdate("CREATE TABLE IF NOT EXISTS staffdet(staffid varchar(40),password char(64),staffname varchar(50),gender varchar(25),address varchar(50),contactnumber varchar(40),emailid varchar(50),idregistereddate date,shift varchar(25));");
+			ResultSet rs = statement.executeQuery("SELECT * FROM staffdet;");
+                        if(!rs.next())
+                        {
+                            statement.executeUpdate("INSERT IGNORE INTO staffdet set staffid='root1234', password='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', staffname='ARS Admin', gender='male', address='gces', contactnumber='9846xxxxxx', emailid='example@gmail.com', idregistereddate = '2018-07-12', shift='morning';");
+                        }
+                        JOptionPane.showMessageDialog(null, "Succesfully created database 1");
+			statement.close();
+			conn.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+                try
+		{
+			Connection conn;
+			Statement statement;
+			conn = DriverManager.getConnection("jdbc:mysql://localhost?useSSL=true","root", "");
+			statement = conn.createStatement();
+			statement.executeUpdate("CREATE DATABASE IF NOT EXISTS userdata;");
+			statement.executeUpdate("USE userdata");
+			statement.executeUpdate("CREATE TABLE IF NOT EXISTS vehicledetails(companyname varchar(40),vehiclenumber varchar(40) primary key,vehicletype varchar(40),modelnumber varchar(40),vehiclecolor varchar(20),fueltype varchar(20),enginenumber varchar(40),displacement varchar(40),maxpower varchar(40),maxtorque varchar(40),noofseats int(15),noofgears varchar(25),tankcapacity varchar(40));");
+			statement.executeUpdate("CREATE TABLE IF NOT EXISTS ownerdetails(ownername varchar(50), registrationdate date, gender varchar(20), dateofbirth date, occupation varchar(40), education varchar(40), citizenshipnumber varchar(40), citiissdis varchar(40), passportnumber varchar(40), passissdis varchar(40), zone varchar(40), district varchar(40), municipality varchar(40), wardNumber int, tole varchar(40), housenumber int, contactnumber varchar(40), emailid varchar(50), vehiclenumb varchar(40));");
+			statement.executeUpdate("CREATE TABLE IF NOT EXISTS ownerphotos(vehiclenumber varchar(40), ownerimage longblob);");
+                        
+                        JOptionPane.showMessageDialog(null, "Succesfully created database 2");		
+			statement.close();
+			conn.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+                confirmCheckBox.setSelected(false);
+        }
+        else
+	{
+            JOptionPane.showMessageDialog(null,"Please tick the checkbox to finalize database");
+        }
